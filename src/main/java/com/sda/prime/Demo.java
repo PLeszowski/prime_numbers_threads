@@ -1,8 +1,14 @@
 package com.sda.prime;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Demo {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         PrimeFounder primeFounder = new BasicPrimeFounder();
 
@@ -34,5 +40,24 @@ public class Demo {
         long stopTime = System.currentTimeMillis();
 
         System.out.println(stopTime - startTime + "ms");
+
+        List<Integer> result = new ArrayList<>();
+
+        result.addAll(first.getPrimeList());
+        result.addAll(second.getPrimeList());
+        result.addAll(third.getPrimeList());
+        result.addAll(fourth.getPrimeList());
+        result.addAll(fifth.getPrimeList());
+
+        PrintWriter printWriter = new PrintWriter(new FileWriter("primes.txt"));
+
+        for(Integer item: result){
+            printWriter.print(item + ", ");
+        }
+
+        printWriter.close();
+
+
+
     }
 }
